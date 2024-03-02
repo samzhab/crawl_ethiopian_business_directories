@@ -4,12 +4,12 @@ require 'httparty'
 require 'nokogiri'
 require 'json'
 
-class Crawler
-  attr_reader :base_url # This line adds a method to read @base_url
+class Crawl
+  attr_reader :crawl_url # This line adds a method to read @weregna_url
 
   # Initialize the crawler with base URL
-  def initialize(base_url)
-    @base_url = base_url
+  def initialize(crawl_url)
+    @crawl_url = crawl_url
   end
 
   # Function to sanitize text
@@ -48,10 +48,17 @@ class Crawler
     extracted_details
   end
 
+  # Method to scrape the events listings
+  def crawl_events
+    # Implement your logic to crawl events
+    # For now, let's just return a placeholder array
+    []
+  end
+
   # Method to scrape the business listings
   def crawl_businesses
     # Use HTTParty to get the page content
-    response = HTTParty.get("#{@base_url}?wpbdp_view=all_listings")
+    response = HTTParty.get(@crawl_url.to_s)
     listings_doc = Nokogiri::HTML(response.body)
 
     businesses = []
@@ -65,16 +72,30 @@ class Crawler
 
       businesses << business
     end
-    # Output to console
-    # puts businesses
-    # Save to JSON file
+
+    businesses
+  end
+
+  # Method to run both crawling methods and save data to JSON files
+  def run
+    events = crawl_events
+    businesses = crawl_businesses
+
+    # Save events to JSON file
+    File.open('events.json', 'w') do |file|
+      file.write(events.to_json)
+    end
+
+    # Save businesses to JSON file
     File.open('businesses.json', 'w') do |file|
       file.write(businesses.to_json)
     end
-    businesses
+
+    { events: events, businesses: businesses }
   end
 end
 
 # Usage
-crawler = Crawler.new('http://www.weregna.com/ethiopia-ethiopian-yellow-pages/')
-crawler.crawl_businesses
+weregna_url = 'http://www.weregna.com/ethiopia-ethiopian-yellow-pages/?wpbdp_view=all_listings'
+crawler = Crawl.new(weregna_url)
+crawler.run
