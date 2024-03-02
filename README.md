@@ -1,6 +1,6 @@
-# Ruby Web Scraping with Nokogiri
+# Ruby Web Crawling with Nokogiri
 
-This project demonstrates how to perform web scraping on a business directory website using Ruby and Nokogiri. It extracts information such as business names, categories, descriptions, phone numbers, fax numbers, and business tags from listings, and additional details from individual business pages if available.
+This project demonstrates how to perform web crawling on a business directory website using Ruby and Nokogiri. It extracts information such as business names, categories, descriptions, phone numbers, fax numbers, and business tags from listings, and additional details from individual business pages if available.
 
 ## Prerequisites
 
@@ -32,7 +32,7 @@ To run the script, execute the following command in the terminal:
 ruby scraper.rb
 ```
 
-This command will start the scraping process. The script will navigate through the web pages, extract the necessary information, and output the data to the console. Additionally, it will save the extracted data into a file named `businesses.json` in the project directory.
+This command will start the crawling process. The script will navigate through the web pages, extract the necessary information, and output the data to the console. Additionally, it will save the extracted data into a file named `businesses.json` in the project directory.
 
 ## Output Format
 
@@ -56,7 +56,7 @@ The script outputs and saves the data in JSON format. Here is an example of what
 
 ## Disclaimer
 
-This script is for educational purposes only. Web scraping should be done responsibly and with respect to the terms of service of the website being scraped. Always ensure that your actions comply with legal guidelines and the website's scraping policy.
+This script is for educational purposes only. Web crawling should be done responsibly and with respect to the terms of service of the website being scraped. Always ensure that your actions comply with legal guidelines and the website's crawling policy.
 
 ## Contributing
 
